@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-oleksiihead') {
-                        dockerImage.push()
+                        DOCKER_IMAGE.push()
                     }
                 }
             }
