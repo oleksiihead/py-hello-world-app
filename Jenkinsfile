@@ -12,6 +12,7 @@ pipeline {
         stage('Clone GitHub repo') {
             steps {
                 git credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
+//                git([url: 'https://github.com/${USERNAME}/${APP_NAME}', credentialsId: 'GitHub-jenkins-token'])
             }
         }
 
