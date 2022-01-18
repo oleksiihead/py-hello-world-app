@@ -27,8 +27,8 @@ pipeline {
         stage('Deploy docker image to DockerHub') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub-oleksiihead' --password-stdin) {
-                        DOCKER_IMAGE.push()
+                    docker.withRegistry('', 'dockerhub-oleksiihead') {
+                        DOCKER_IMAGE.push("${BUILD_ID}")
                     }
                 }
             }
