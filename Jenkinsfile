@@ -2,7 +2,7 @@ pipeline {
     environment {
         USERNAME = "oleksiihead"
         APP_NAME = "py-hello-world-app"
-        DOCKER_NAME = "${DOCKERHUB_USERNAME}/${APP_NAME}:${BUILD_ID}"
+        IMAGE_NAME = "${DOCKERHUB_USERNAME}/${APP_NAME}:${BUILD_ID}"
         DOCKER_IMAGE = ''
     }
 
@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone GitHub repo') {
             steps {
-                git credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
+                git branch: 'main', credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
 //                git([url: 'https://github.com/${USERNAME}/${APP_NAME}', credentialsId: 'GitHub-jenkins-token'])
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    DOCKER_IMAGE = docker.build DOCKER_NAME
+                    DOCKER_IMAGE = docker.build IMAGE_NAME
                 }
             }
         }
