@@ -9,11 +9,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone GitHub repo') {
-            steps {
-                git credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
-            }
-        }
+//         stage('Clone GitHub repo') {
+//             steps {
+//                 git credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
+//             }
+//         }
 
         stage('Build Docker image') {
             steps {
