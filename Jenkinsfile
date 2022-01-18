@@ -2,7 +2,7 @@ pipeline {
     environment {
         USERNAME = "oleksiihead"
         APP_NAME = "py-hello-world-app"
-        IMAGE_NAME = "${DOCKERHUB_USERNAME}/${APP_NAME}:${BUILD_ID}"
+        IMAGE_NAME = "${USERNAME}/${APP_NAME}:${BUILD_ID}"
         DOCKER_IMAGE = ''
     }
 
@@ -27,8 +27,9 @@ pipeline {
         stage('Deploy docker image to DockerHub') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub-oleksiihead')
-                    dockerImage.push()
+                    docker.withRegistry('', 'dockerhub-oleksiihead') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
