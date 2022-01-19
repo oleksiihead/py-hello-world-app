@@ -29,7 +29,7 @@ pipeline {
                 script {
                     docker.withRegistry('', 'dockerhub-oleksiihead') {
                         DOCKER_IMAGE.push("${BUILD_ID}")
-                        DOCKER_IMAGE.push('latest')
+                        DOCKER_IMAGE.push("latest")
                     }
                 }
             }
