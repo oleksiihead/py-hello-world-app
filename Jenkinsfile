@@ -12,7 +12,7 @@ pipeline {
         stage('Clone GitHub repo') {
             steps {
                 git branch: 'main', credentialsId: 'GitHub-jenkins-token', url: "https://github.com/${USERNAME}/${APP_NAME}"
-//                git([url: 'https://github.com/${USERNAME}/${APP_NAME}', credentialsId: 'GitHub-jenkins-token'])
+//                git([url: "https://github.com/${USERNAME}/${APP_NAME}", credentialsId: 'GitHub-jenkins-token'])
             }
         }
 
@@ -28,7 +28,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-oleksiihead') {
-                        DOCKER_IMAGE.push("${BUILD_ID}")
+                        DOCKER_IMAGE.push()
+                        DOCKER_IMAGE.push("latest")
                     }
                 }
             }
