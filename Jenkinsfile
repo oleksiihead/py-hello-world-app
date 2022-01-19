@@ -28,11 +28,17 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-oleksiihead') {
-                        DOCKER_IMAGE.push()
-                        DOCKER_IMAGE.push("latest")
+                        DOCKER_IMAGE.push("${BUILD_ID}")
+                        DOCKER_IMAGE.push('latest')
                     }
                 }
             }
         }
+
+//         stage('Delete images') {
+//             steps {
+//                 // delete images
+//             }
+//         }
     }
 }
